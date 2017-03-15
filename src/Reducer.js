@@ -284,7 +284,11 @@ function inject(state, action, props, scenes) {
             assert((index || 0) < newChildren.length,
               `You are not allowed change current scene - ${command}`);
             const sceneState = getInitialState(scenes[command.sceneKey], scenes);
-            newChildren[index].duration = 0;
+
+            if (newChildren[index]) {
+              newChildren[index].duration = 0;
+            }
+
             newChildren.splice(index || removedIndex || 0, 0, sceneState);
             break;
 
